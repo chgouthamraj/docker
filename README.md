@@ -29,3 +29,8 @@ docker run --name express-container -p 8000:3000 -v $(pwd):/usr/src/app express-
 - `-p 8000:3000 → maps host port 8000 to container port 3000 (Express runs inside the container on port 3000).`
 - `-v $(pwd):/usr/src/app → mounts your current working directory into the container (/usr/src/app).`
 - `This is a bind mount → any code changes on your local machine are reflected inside the container instantly.`
+
+
+# anonymous volume
+- docker run --name my-node-app-3 -p 8000:3000 -v $(pwd):/usr/src/app -v /usr/src/app/node_modules  nodeapp:v2 
+- `-v /usr/src/app/node_modules tells Docker → “don’t replace my container’s node_modules with the empty one from my host”`
