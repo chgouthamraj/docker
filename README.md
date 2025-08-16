@@ -17,7 +17,15 @@
 - docker stop <continer-name> (stop  the running containers)
 - docker rm <continer-name> (To delete containers)
 
-
-
 - As container is isolated we need to map container port to system port
-- 
+
+
+- To sync up the code changes in our local system and docker container we can make use of volumes and bind mounts
+-  docker run --name <continer-name> -p 8000:3000 -v $(pwd):<conatiner-directory> <image-name> (-v we are using a volume called bind mount ("pwd" get system relative map to container path(/usr/src/app) )  )
+
+docker run --name express-container -p 8000:3000 -v $(pwd):/usr/src/app express-app
+
+- `--name express-container → names the container.`
+- `-p 8000:3000 → maps host port 8000 to container port 3000 (Express runs inside the container on port 3000).`
+- `-v $(pwd):/usr/src/app → mounts your current working directory into the container (/usr/src/app).`
+- `This is a bind mount → any code changes on your local machine are reflected inside the container instantly.`
