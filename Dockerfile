@@ -1,0 +1,16 @@
+# a base node image for our setup (base_image_name : version)
+FROM node:alpine
+
+# create a working directory inside the container (directory can be anything)
+WORKDIR /usr/src/app
+
+# copy the code from root or specified path to the working directory of our container
+COPY . . 
+
+# To install the dependenices
+RUN npm install
+
+EXPOSE 3000
+
+CMD ["npm","run","start"]
+
